@@ -34,16 +34,14 @@ EDUCATION = [
 # Simple list-style "travel map" for now — we'll upgrade to an
 # interactive map later.
 PLACES = [
-    {"flag": "🇺🇸", "city": "San Francisco", "country": "USA"},
-    {"flag": "🇯🇵", "city": "Tokyo", "country": "Japan"},
-    {"flag": "🇫🇷", "city": "Paris", "country": "France"},
-    {"flag": "🇨🇦", "city": "Toronto", "country": "Canada"},
+    {"flag": "flag emoji", "city": "City", "country": "Country"}
+    
 ]
 
 HOBBIES = [
     {
-        "name": "Hackathons",
-        "description": "I love hackathons.",
+        "name": "Name",
+        "description": "Description.",
         "image": "vit.jpeg",
     },
 ]
