@@ -1,40 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:title" content="Personal Portfolio">
-    <meta property="og:description" content="My Personal Portfolio">
-    <meta property="og:url" content="{{ url }}">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-
-    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
-    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
-    <title>{{ title }}</title>
-</head>
-
-<body>
-    <header class="nav-bar">
-        <div class="nav-content">
-            <a href="/">
-                <div class="nav-logo">
-                    <img src="./static/img/logo.svg" />
-                </div>
-            </a>
-        </div>
-    </header>
-
-    <div class="profile">
-        <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
-        </div>
-        <h1>{{ title }}</h1>
+{% block content %}
+<section class="profile">
+    <div class="profile-picture">
+        <img src="{{ url_for('static', filename='img/' + photo) }}" alt="Photo of {{ name }}">
     </div>
-</body>
-</html>
+    <h1>{{ name }}</h1>
+    <p class="tagline">{{ tagline }}</p>
+</section>
+
+<div class="container">
+    <section class="section">
+        <h2>About Me</h2>
+        <p>{{ about }}</p>
+    </section>
+
+    <section class="section">
+        <h2>Education</h2>
+        {% for edu in education %}
+        <div class="card">
+            <h3>{{ edu.school }}</h3>
+            <span class="meta">{{ edu.degree }} · {{ edu.period }}</span>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section class="section">
+        <h2>Travel Map</h2>
+        <p>Cool places I've visited:</p>
+        <ul class="places">
+            {% for place in places %}
+            <li>{{ place.flag }} {{ place.city }}, {{ place.country }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}
