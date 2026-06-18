@@ -33,13 +33,13 @@ EDUCATION = [
     },
 ]
 
-# Simple list-style "travel map" for now — we'll upgrade to an
-# interactive map later.
+# Places I've traveled to. Each entry carries lat/lng so it can be
+# plotted as a marker on the interactive Leaflet map (see index.html).
 PLACES = [
-    {"flag": "🇺🇸", "city": "San Francisco", "country": "USA"},
-    {"flag": "🇯🇵", "city": "Tokyo", "country": "Japan"},
-    {"flag": "🇫🇷", "city": "Paris", "country": "France"},
-    {"flag": "🇨🇦", "city": "Toronto", "country": "Canada"},
+    {"flag": "🇺🇸", "city": "San Francisco", "country": "USA", "lat": 37.7749, "lng": -122.4194},
+    {"flag": "🇯🇵", "city": "Tokyo", "country": "Japan", "lat": 35.6762, "lng": 139.6503},
+    {"flag": "🇫🇷", "city": "Paris", "country": "France", "lat": 48.8566, "lng": 2.3522},
+    {"flag": "🇨🇦", "city": "Toronto", "country": "Canada", "lat": 43.6532, "lng": -79.3832},
 ]
 
 HOBBIES = [

@@ -169,7 +169,17 @@ body {
     font-size: 14px;
 }
 
-/* --- Travel list --- */
+/* --- Travel map --- */
+#map {
+    height: 420px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    z-index: 0;
+}
+
+/* --- Travel list (legend / no-JS fallback) --- */
 .places {
     list-style: none;
     padding: 0;

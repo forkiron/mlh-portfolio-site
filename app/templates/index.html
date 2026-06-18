@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block head %}
+<!-- Leaflet: open-source interactive maps (https://leafletjs.com) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+{% endblock %}
+
 {% block content %}
 <section class="profile">
     <div class="profile-picture">
@@ -27,7 +33,8 @@
 
     <section class="section">
         <h2>Travel Map</h2>
-        <p>Cool places I've visited:</p>
+        <p>Cool places I've visited — click a pin for details:</p>
+        <div id="map" aria-label="Interactive map of places I've visited"></div>
         <ul class="places">
             {% for place in places %}
             <li>{{ place.flag }} {{ place.city }}, {{ place.country }}</li>
@@ -35,4 +42,34 @@
         </ul>
     </section>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    (function () {
+        // Places come from Flask (app/__init__.py) — tojson keeps it script-safe.
+        var places = {{ places | tojson }};
+
+        var map = L.map("map", { scrollWheelZoom: false });
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = places.map(function (p) {
+            return L.marker([p.lat, p.lng])
+                .addTo(map)
+                .bindPopup("<strong>" + p.flag + " " + p.city + "</strong><br>" + p.country);
+        });
+
+        // Frame the map around all the pins; fall back to a world view if empty.
+        if (markers.length) {
+            map.fitBounds(L.featureGroup(markers).getBounds().pad(0.3));
+        } else {
+            map.setView([20, 0], 2);
+        }
+    })();
+</script>
 {% endblock %}
