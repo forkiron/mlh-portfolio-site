@@ -8,9 +8,9 @@ load_dotenv()
 app = Flask(__name__)
 
 # --- Site basics (placeholders — personalize these later) ---
-NAME = "Thomas"
-TAGLINE = "MLH Fellow/Software Engineer"
-PHOTO = "logo.jpg"  # 
+NAME = "Enter Name"
+TAGLINE = "Enter Role"
+PHOTO = "logo.jpg"  #
 
 # Pages shown in the dynamic navigation bar. Add a route + an entry
 # here and it automatically appears in the menu.
@@ -20,16 +20,15 @@ PAGES = [
 ]
 
 ABOUT = (
-    "Hi, I'm Thomas, I love building useful things on the web! "
-    "I'm super excited to be a part of the MLH Fellowship! "
-    "I have a passion for software engineering and I'm always looking for new challenges and opportunities to grow."
+    "Hi, I'm [Enter Name]. I am currently pursuing [Enter Major] at [Enter University] "
+    "and my background is in [xyz]. I am currently interested in [abc]."
 )
 
 EDUCATION = [
     {
-        "school": "University of Waterloo",
-        "degree": "B.S. in Mathematics",
-        "period": "2025 — 2030",
+        "school": "Enter University",
+        "degree": "B.S. in Enter Program",
+        "period": "20XX — 20XX",
     },
 ]
 
@@ -63,6 +62,21 @@ HOBBIES = [
             {"name": "Hackathons", "description": "Building projects under pressure.", "image": "vit.jpeg"},
             {"name": "Gaming", "description": "Strategy and indie games.", "icon": "🎮"},
         ],
+    },
+]
+
+SKILLS = [
+    {
+        "group": "Languages",
+        "skills": ["Language#1", "Language#2", "Language#3", "Language#4"],
+    },
+    {
+        "group": "Frameworks",
+        "skills": ["Framework#1", "Framework#2", "Framework#3", "Framework#4"],
+    },
+    {
+        "group": "Tools",
+        "skills": ["Tool#1", "Tool#2", "Tool#3", "Tool#4"],
     },
 ]
 
