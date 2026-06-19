@@ -44,24 +44,25 @@ PLACES = [
 
 HOBBIES = [
     {
-        "name": "Hackathons",
-        "description": "I love hackathons.",
-        "image": "vit.jpeg",
-    },
-]
-
-SKILLS = [
-    {
-        "group": "Languages",
-        "skills": ["Language#1", "Language#2", "Language#3", "Language#4"],
+        "section": "Outdoor",
+        "hobbies": [
+            {"name": "Hiking", "description": "Exploring trails and nature.", "icon": "🥾"},
+            {"name": "Cycling", "description": "Long rides through the city and countryside.", "icon": "🚴"},
+        ],
     },
     {
-        "group": "Frameworks",
-        "skills": ["Framework#1", "Framework#2", "Framework#3", "Framework#4"],
+        "section": "Creative",
+        "hobbies": [
+            {"name": "Photography", "description": "Capturing moments and places.", "icon": "📷"},
+            {"name": "Sketching", "description": "Drawing portraits and landscapes.", "icon": "✏️"},
+        ],
     },
     {
-        "group": "Tools",
-        "skills": ["Tool#1", "Tool#2", "Tool#3", "Tool#4"],
+        "section": "Tech & Gaming",
+        "hobbies": [
+            {"name": "Hackathons", "description": "Building projects under pressure.", "image": "vit.jpeg"},
+            {"name": "Gaming", "description": "Strategy and indie games.", "icon": "🎮"},
+        ],
     },
 ]
 
