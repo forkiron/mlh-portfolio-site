@@ -31,7 +31,6 @@ SOCIALS = [
 BIO = {
     "lead": "first-year student based in waterloo.",
     "lines": [
-        "currently studying at university of waterloo.",
         "i like consumer tech and building cool things.",
     ],
 }
@@ -39,14 +38,14 @@ BIO = {
 WORK_EXPERIENCES = [
     {
         "company": "viggle (a16z)",
-        "role": "member of technical staff",
+        "role": "systems + infra for 40 million users",
         "period": "summer 2026",
         "logo": "vigglenew.webp",
         "href": "https://viggle.ai/",
     },
     {
         "company": "plots (a16z)",
-        "role": "software engineer",
+        "role": "internal tooling for 500k users",
         "period": "jan 2026 - april 2026",
         "logo": "plots_new.png",
         "href": "https://plots.events",
@@ -64,7 +63,7 @@ WORK_EXPERIENCES = [
 EDUCATION = [
     {
         "school": "university of waterloo",
-        "degree": "first-year student",
+        "degree": "bachelor of mathematics, computer science",
         "period": "2025 — present",
         "logo": "uwaterloo.webp",
     },
@@ -80,9 +79,10 @@ PLACES = [
 ]
 
 SKILLS = [
-    {"group": "languages", "skills": ["typescript", "python", "javascript", "c++"]},
-    {"group": "frameworks", "skills": ["react", "next.js", "flask", "react native"]},
-    {"group": "tools", "skills": ["git", "docker", "linux", "figma"]},
+    {"group": "languages", "skills": ["python", "java", "c", "c++", "javascript", "typescript", "sql", "swift"]},
+    {"group": "frameworks", "skills": ["react", "react native", "next.js", "express", "flask", "fastapi", "tailwind"]},
+    {"group": "technologies", "skills": ["postgresql", "mysql", "mongodb", "influxdb", "pandas", "opencv"]},
+    {"group": "developer tools", "skills": ["git", "docker", "node", "gcp", "supabase", "vercel", "figma"]},
 ]
 
 HOBBIES = [
