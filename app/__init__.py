@@ -83,10 +83,11 @@ PLACES = [
 ]
 
 SKILLS = [
-    {"group": "languages", "skills": ["python", "java", "c", "c++", "javascript", "typescript", "sql", "swift"]},
+    {"group": "languages", "skills": ["python", "java", "c", "c++", "javascript", "typescript", "sql", "bash", "swift"]},
     {"group": "frameworks", "skills": ["react", "react native", "next.js", "express", "flask", "fastapi", "tailwind"]},
-    {"group": "technologies", "skills": ["postgresql", "mysql", "mongodb", "influxdb", "pandas", "opencv"]},
-    {"group": "developer tools", "skills": ["git", "docker", "node", "gcp", "supabase", "vercel", "figma"]},
+    {"group": "infrastructure", "skills": ["docker", "kubernetes", "linux", "nginx", "ci/cd", "prometheus", "grafana"]},
+    {"group": "databases & data", "skills": ["postgresql", "mysql", "mongodb", "redis", "influxdb", "pandas", "opencv"]},
+    {"group": "developer tools", "skills": ["git", "github actions", "gcp", "aws", "digitalocean", "supabase", "vercel", "figma"]},
 ]
 
 HOBBIES = [
