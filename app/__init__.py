@@ -38,14 +38,16 @@ BIO = {
 WORK_EXPERIENCES = [
     {
         "company": "viggle (a16z)",
-        "role": "systems + infra for 40 million users",
+        "role": "member of technical staff",
+        "note": "systems + infra for 40 million users",
         "period": "summer 2026",
         "logo": "vigglenew.webp",
         "href": "https://viggle.ai/",
     },
     {
         "company": "plots (a16z)",
-        "role": "internal tooling for 500k users",
+        "role": "software engineer",
+        "note": "internal tooling for 500k users",
         "period": "jan 2026 - april 2026",
         "logo": "plots_new.png",
         "href": "https://plots.events",
@@ -54,6 +56,7 @@ WORK_EXPERIENCES = [
     {
         "company": "keywa newcomers",
         "role": "software engineer",
+        "note": "cursor for international students",
         "period": "nov 2025 - dec 2025",
         "logo": "keywa_logo.jpg",
         "href": "https://www.keywacanada.com/",
@@ -122,6 +125,7 @@ def inject_globals():
     return {
         "pages": PAGES,
         "name": NAME,
+        "socials": SOCIALS,
         "url": os.getenv("URL"),
         "year": datetime.now().year,
     }
@@ -134,7 +138,6 @@ def index():
         title=f"{NAME} · portfolio",
         tagline=TAGLINE,
         bio=BIO,
-        socials=SOCIALS,
         skills=SKILLS,
         work_experiences=WORK_EXPERIENCES,
         education=EDUCATION,

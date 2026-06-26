@@ -48,6 +48,7 @@
                 <span class="work-meta">
                     <span class="work-company">{{ job.company }}</span>
                     <span class="work-role">{{ job.role }}</span>
+                    {% if job.note %}<span class="work-note">{{ job.note }}</span>{% endif %}
                 </span>
                 <span class="work-period">{{ job.period }}</span>
             </a>

@@ -231,7 +231,15 @@ a.work-card:hover {
     display: block;
     margin-top: 2px;
     font-size: 0.85rem;
-    color: var(--text-subtle);
+    color: var(--text-secondary);
+    text-transform: lowercase;
+}
+
+.work-note {
+    display: block;
+    margin-top: 1px;
+    font-size: 0.8rem;
+    color: var(--text-faint);
     text-transform: lowercase;
 }
 
@@ -363,6 +371,13 @@ a.work-card:hover {
     margin: 0 16px 14px;
     font-size: 0.85rem;
     color: var(--text-subtle);
+}
+
+/* --- footer socials --- */
+.site-footer {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 8px 24px 56px;
 }
 
 /* --- responsive --- */
