@@ -38,7 +38,7 @@ BIO = {
 WORK_EXPERIENCES = [
     {
         "company": "viggle (a16z)",
-        "role": "member of technical staff",
+        "role": "series a startup",
         "note": "systems + infra for 40 million users",
         "period": "summer 2026",
         "logo": "vigglenew.webp",
@@ -46,7 +46,7 @@ WORK_EXPERIENCES = [
     },
     {
         "company": "plots (a16z)",
-        "role": "software engineer",
+        "role": "seed startup",
         "note": "internal tooling for 500k users",
         "period": "jan 2026 - april 2026",
         "logo": "plots_new.png",
