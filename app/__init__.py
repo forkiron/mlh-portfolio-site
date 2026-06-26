@@ -70,7 +70,7 @@ PROJECTS = [
         "name": "vit",
         "image": "vit.jpeg",
         "stats": ["⭐ 700+ stars"],
-        "description": "built git for video editing in 24h.",
+        "description": "built git for video editing in 24h. 700+ stars and 2 million views.",
         "href": "https://vit-editor.vercel.app/",
         "links": [
             {"icon": "github", "href": "https://github.com/LucasHJin/vit"},
