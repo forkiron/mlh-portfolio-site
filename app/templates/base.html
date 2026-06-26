@@ -16,11 +16,13 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+    <script defer src="{{ url_for('static', filename='js/quasicrystal.js') }}"></script>
     <title>{{ title }}</title>
     {% block head %}{% endblock %}
 </head>
 
 <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
     <header class="nav-bar">
         <div class="nav-content">
             <a class="nav-logo" href="{{ url_for('index') }}" aria-label="MLH Fellowship">
