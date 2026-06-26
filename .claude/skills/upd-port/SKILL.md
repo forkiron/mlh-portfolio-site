@@ -27,7 +27,9 @@ bash scripts/deploy.sh "short commit message describing the change"
 ```
 
 When invoking this skill, craft a concise commit message from the actual pending
-diff instead of the generic default. If the tree is clean it just redeploys.
+diff in **Conventional Commits** format (`feat:`, `fix:`, `docs:`, `style:`,
+`chore:` — see `CONTRIBUTING.md`) instead of the generic default. If the tree is
+clean it just redeploys.
 
 ## Auth (important — do the one-time setup once)
 The droplet uses **SSH key auth**. The deploy uses plain `ssh`, so the key must be

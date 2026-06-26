@@ -26,7 +26,7 @@ APP_PORT="${APP_PORT:-5000}"
 DUCKDNS_URL="${DUCKDNS_URL:-}"
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-COMMIT_MSG="${1:-deploy: update portfolio}"
+COMMIT_MSG="${1:-chore: redeploy portfolio}"
 
 echo "==> Deploying branch '$BRANCH' to $VPS_HOST"
 
