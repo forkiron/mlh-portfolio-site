@@ -330,9 +330,13 @@ a.work-card:hover {
 
 /* --- projects --- */
 .project-intro {
-    margin: -6px 0 20px;
+    margin: -6px 0 22px;
     color: var(--text-muted);
     font-size: 0.95rem;
+}
+
+.project-intro p {
+    margin: 0 0 4px;
 }
 
 .project-grid {

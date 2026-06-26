@@ -70,7 +70,7 @@ PROJECTS = [
         "name": "vit",
         "image": "vit.jpeg",
         "stats": ["⭐ 700+ stars"],
-        "description": "git for video editing. 700+ stars and 2 million views.",
+        "description": "built git for video editing in 24h.",
         "href": "https://vit-editor.vercel.app/",
         "links": [
             {"icon": "github", "href": "https://github.com/LucasHJin/vit"},
@@ -111,6 +111,12 @@ PROJECTS = [
             {"icon": "external", "href": "https://donair.tech"},
         ],
     },
+]
+
+# Intro lines shown above the projects grid on the hobbies page.
+PROJECTS_INTRO = [
+    "i love hackathons — 6x hackathon winner, 10x participant",
+    "i also like open source stuff!",
 ]
 
 EDUCATION = [
@@ -187,6 +193,7 @@ def hobbies():
         "hobbies.html",
         title=f"hobbies · {NAME}",
         projects=PROJECTS,
+        projects_intro=PROJECTS_INTRO,
     )
 
 
