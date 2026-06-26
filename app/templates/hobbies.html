@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="page">
     {% for section in hobbies %}
     <section class="section">
-        <h2>{{ section.section }}</h2>
+        <h2 class="section-title">{{ section.section }}:</h2>
         <div class="hobby-grid">
             {% for hobby in section.hobbies %}
             <div class="hobby-card">

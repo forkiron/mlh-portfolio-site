@@ -7,99 +7,114 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
-# --- Site basics (placeholders — personalize these later) ---
-NAME = "Enter Name"
-TAGLINE = "Enter Role"
-PHOTO = "logo.jpg"  #
+# --- Site basics ---
+NAME = "thomas lenh"
+TAGLINE = "first year @ uwaterloo · into consumer tech"
 
 # Pages shown in the dynamic navigation bar. Add a route + an entry
 # here and it automatically appears in the menu.
 PAGES = [
-    {"name": "Home", "endpoint": "index"},
-    {"name": "Hobbies", "endpoint": "hobbies"},
+    {"name": "home", "endpoint": "index"},
+    {"name": "hobbies", "endpoint": "hobbies"},
+    {"name": "week 1", "endpoint": "week1"},
 ]
 
-ABOUT = (
-    "Hi, I'm [Enter Name]. I am currently pursuing [Enter Major] at [Enter University] "
-    "and my background is in [xyz]. I am currently interested in [abc]."
-)
+# Social links shown next to the hero heading.
+SOCIALS = [
+    {"label": "GitHub", "href": "https://github.com/forkiron", "icon": "github"},
+    {"label": "Twitter", "href": "https://x.com/forkyron", "icon": "twitter"},
+    {"label": "LinkedIn", "href": "https://www.linkedin.com/in/thomas-lenh", "icon": "linkedin"},
+    {"label": "Email", "href": "mailto:thomaslenh@gmail.com", "icon": "mail"},
+]
 
-EDUCATION = [
+# Short bio lines. The first is the lead; the rest render as ↳ sub-lines.
+BIO = {
+    "lead": "first-year student based in waterloo.",
+    "lines": [
+        "currently studying at university of waterloo.",
+        "i like consumer tech and building cool things.",
+    ],
+}
+
+WORK_EXPERIENCES = [
     {
-        "school": "Enter University",
-        "degree": "B.S. in Enter Program",
-        "period": "20XX — 20XX",
+        "company": "viggle (a16z)",
+        "role": "member of technical staff",
+        "period": "summer 2026",
+        "logo": "vigglenew.webp",
+        "href": "https://viggle.ai/",
+    },
+    {
+        "company": "plots (a16z)",
+        "role": "software engineer",
+        "period": "jan 2026 - april 2026",
+        "logo": "plots_new.png",
+        "href": "https://plots.events",
+        "dark_logo": True,
+    },
+    {
+        "company": "keywa newcomers",
+        "role": "software engineer",
+        "period": "nov 2025 - dec 2025",
+        "logo": "keywa_logo.jpg",
+        "href": "https://www.keywacanada.com/",
     },
 ]
 
-# Places I've traveled to. Each entry carries lat/lng so it can be
-# plotted as a marker on the interactive Leaflet map (see index.html).
+EDUCATION = [
+    {
+        "school": "university of waterloo",
+        "degree": "first-year student",
+        "period": "2025 — present",
+        "logo": "uwaterloo.webp",
+    },
+]
+
+# Places I've been. Each entry carries lat/lng so it can be plotted as a
+# marker on the interactive Leaflet map (see index.html).
 PLACES = [
-    {"flag": "🇺🇸", "city": "San Francisco", "country": "USA", "lat": 37.7749, "lng": -122.4194},
-    {"flag": "🇯🇵", "city": "Tokyo", "country": "Japan", "lat": 35.6762, "lng": 139.6503},
-    {"flag": "🇫🇷", "city": "Paris", "country": "France", "lat": 48.8566, "lng": 2.3522},
-    {"flag": "🇨🇦", "city": "Toronto", "country": "Canada", "lat": 43.6532, "lng": -79.3832},
+    {"flag": "🇺🇸", "city": "san francisco", "country": "usa", "lat": 37.7749, "lng": -122.4194},
+    {"flag": "🇺🇸", "city": "los angeles", "country": "usa", "lat": 34.0522, "lng": -118.2437},
+    {"flag": "🇻🇳", "city": "vietnam", "country": "", "lat": 16.0471, "lng": 108.2068},
+    {"flag": "🇹🇼", "city": "taiwan", "country": "", "lat": 23.6978, "lng": 120.9605},
+]
+
+SKILLS = [
+    {"group": "languages", "skills": ["typescript", "python", "javascript", "c++"]},
+    {"group": "frameworks", "skills": ["react", "next.js", "flask", "react native"]},
+    {"group": "tools", "skills": ["git", "docker", "linux", "figma"]},
 ]
 
 HOBBIES = [
     {
-        "section": "Outdoor",
+        "section": "sports",
         "hobbies": [
-            {"name": "Hiking", "description": "Exploring trails and nature.", "icon": "🥾"},
-            {"name": "Cycling", "description": "Long rides through the city and countryside.", "icon": "🚴"},
+            {"name": "badminton", "description": "smashing birdies whenever i can.", "icon": "🏸"},
+            {"name": "basketball", "description": "pickup runs with friends.", "icon": "🏀"},
         ],
     },
     {
-        "section": "Creative",
+        "section": "tech",
         "hobbies": [
-            {"name": "Photography", "description": "Capturing moments and places.", "icon": "📷"},
-            {"name": "Sketching", "description": "Drawing portraits and landscapes.", "icon": "✏️"},
-        ],
-    },
-    {
-        "section": "Tech & Gaming",
-        "hobbies": [
-            {"name": "Hackathons", "description": "Building projects under pressure.", "image": "vit.jpeg"},
-            {"name": "Gaming", "description": "Strategy and indie games.", "icon": "🎮"},
+            {"name": "hackathons", "description": "building projects under pressure.", "image": "vit.jpeg"},
         ],
     },
 ]
 
-SKILLS = [
-    {
-        "group": "Languages",
-        "skills": ["Language#1", "Language#2", "Language#3", "Language#4"],
-    },
-    {
-        "group": "Frameworks",
-        "skills": ["Framework#1", "Framework#2", "Framework#3", "Framework#4"],
-    },
-    {
-        "group": "Tools",
-        "skills": ["Tool#1", "Tool#2", "Tool#3", "Tool#4"],
-    },
-]
+# Week 1 recap — kept short and nonchalant, one line per thing.
+WEEK1 = {
+    "intro": "orientation + first taste of linux and servers. super hands-on week.",
+    "learnings": [
+        "spun up my first digitalocean droplet running centos stream 9.",
+        "ran cat /etc/centos-release to check the os — kinda cool.",
+        "generated ssh keys to get into the box securely.",
+        "deployed this flask site straight onto the vps.",
+        "used tmux so flask keeps running after i log out.",
+        "pointed a duckdns domain at the server's ip.",
+        "deploy off a branch so main stays clean for friends to fork.",
+    ],
+}
 
-WORK_EXPERIENCES = [
-    {
-        "role": "Enter Role",
-        "company": "Enter Company",
-        "period": "20XX-20XX",
-        "description": "Enter what you worked on.",
-    },
-    {
-        "role": "Enter Role",
-        "company": "Enter Company",
-        "period": "20XX-20XX",
-        "description": "Enter what you worked on."
-    },
-    {
-        "role": "Enter Role",
-        "company": "Enter Company",
-        "period": "20XX-20XX",
-        "description": "Enter what you worked on."
-    },
-]
 
 @app.context_processor
 def inject_globals():
@@ -116,10 +131,10 @@ def inject_globals():
 def index():
     return render_template(
         "index.html",
-        title=f"{NAME} · Portfolio",
+        title=f"{NAME} · portfolio",
         tagline=TAGLINE,
-        photo=PHOTO,
-        about=ABOUT,
+        bio=BIO,
+        socials=SOCIALS,
         skills=SKILLS,
         work_experiences=WORK_EXPERIENCES,
         education=EDUCATION,
@@ -131,6 +146,15 @@ def index():
 def hobbies():
     return render_template(
         "hobbies.html",
-        title=f"Hobbies · {NAME}",
+        title=f"hobbies · {NAME}",
         hobbies=HOBBIES,
+    )
+
+
+@app.route("/week1")
+def week1():
+    return render_template(
+        "week1.html",
+        title=f"week 1 · {NAME}",
+        week1=WEEK1,
     )

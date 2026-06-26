@@ -12,84 +12,97 @@
 {% endblock %}
 
 {% block content %}
-<section class="profile">
-    <div class="profile-picture">
-        <img
-            src="{{ url_for('static', filename='img/' ~ photo) }}"
-            alt="Photo of {{ name }}"
-        >
-    </div>
+<div class="page">
+    <!-- hero / about -->
+    <header class="hero">
+        <div class="hero-top">
+            <h1>{{ name }}</h1>
+            <div class="socials">
+                {% for social in socials %}
+                <a href="{{ social.href }}" class="social" aria-label="{{ social.label }}"
+                    {% if social.icon != 'mail' %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                    {% include 'icons/' ~ social.icon ~ '.svg' %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
 
-    <h1>{{ name }}</h1>
-    <p class="tagline">{{ tagline }}</p>
-</section>
+        <div class="bio">
+            <p class="bio-lead">{{ bio.lead }}</p>
+            {% for line in bio.lines %}
+            <p class="bio-line"><span class="arrow">↳</span> {{ line }}</p>
+            {% endfor %}
+        </div>
+    </header>
 
-<div class="container">
+    <!-- work -->
     <section class="section">
-        <h2>About Me</h2>
-        <p>{{ about }}</p>
-    </section>
-
-    <section class="section">
-        <h2>Skills</h2>
-
-        <div class="skills-grid">
-            {% for group in skills %}
-                <div class="skill-group">
-                    <h3 class="skill-group-title">{{ group.group }}</h3>
-
-                    <div class="skill-tags">
-                        {% for item in group.skills %}
-                            <span class="skill-tag">{{ item }}</span>
-                        {% endfor %}
-                    </div>
-                </div>
+        <h2 class="section-title">work:</h2>
+        <div class="work-list">
+            {% for job in work_experiences %}
+            <a href="{{ job.href }}" class="work-card" target="_blank" rel="noopener noreferrer">
+                <span class="work-logo {% if job.dark_logo %}work-logo--dark{% endif %}">
+                    <img src="{{ url_for('static', filename='img/' ~ job.logo) }}" alt="{{ job.company }}">
+                </span>
+                <span class="work-meta">
+                    <span class="work-company">{{ job.company }}</span>
+                    <span class="work-role">{{ job.role }}</span>
+                </span>
+                <span class="work-period">{{ job.period }}</span>
+            </a>
             {% endfor %}
         </div>
     </section>
 
+    <!-- education -->
     <section class="section">
-        <h2>Work Experience</h2>
-
-        {% for job in work_experiences %}
-            <div class="card">
-                <h3>{{ job.role }} — {{ job.company }}</h3>
-                <span class="meta">{{ job.period }}</span>
-                <p>{{ job.description }}</p>
-            </div>
-        {% endfor %}
-    </section>
-
-    <section class="section">
-        <h2>Education</h2>
-
-        {% for edu in education %}
-            <div class="card">
-                <h3>{{ edu.school }}</h3>
-                <span class="meta">
-                    {{ edu.degree }} · {{ edu.period }}
+        <h2 class="section-title">education:</h2>
+        <div class="work-list">
+            {% for edu in education %}
+            <div class="work-card work-card--static">
+                <span class="work-logo">
+                    <img src="{{ url_for('static', filename='img/' ~ edu.logo) }}" alt="{{ edu.school }}">
                 </span>
+                <span class="work-meta">
+                    <span class="work-company">{{ edu.school }}</span>
+                    <span class="work-role">{{ edu.degree }}</span>
+                </span>
+                <span class="work-period">{{ edu.period }}</span>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </section>
 
+    <!-- travel -->
     <section class="section">
-        <h2>Travel Map</h2>
-        <p>Cool places I've visited — click a pin for details:</p>
-
+        <h2 class="section-title">places:</h2>
         <div
             id="map"
             role="region"
-            aria-label="Interactive map of places I've visited"
+            aria-label="Interactive map of places I've been"
         ></div>
-
         <ul class="places">
             {% for place in places %}
-                <li>
-                    {{ place.flag }} {{ place.city }}, {{ place.country }}
-                </li>
+            <li>{{ place.flag }} {{ place.city }}{% if place.country %}, {{ place.country }}{% endif %}</li>
             {% endfor %}
         </ul>
+    </section>
+
+    <!-- skills (bottom) -->
+    <section class="section">
+        <h2 class="section-title">skills:</h2>
+        <div class="skills-grid">
+            {% for group in skills %}
+            <div class="skill-group">
+                <h3 class="skill-group-title">{{ group.group }}</h3>
+                <div class="skill-tags">
+                    {% for item in group.skills %}
+                    <span class="skill-tag">{{ item }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </section>
 </div>
 {% endblock %}
@@ -126,12 +139,7 @@
             return L.marker([place.lat, place.lng])
                 .addTo(map)
                 .bindPopup(
-                    "<strong>" +
-                    place.flag +
-                    " " +
-                    place.city +
-                    "</strong><br>" +
-                    place.country
+                    "<strong>" + place.flag + " " + place.city + "</strong>"
                 );
         });
 
