@@ -17,14 +17,6 @@
     <header class="hero">
         <div class="hero-top">
             <h1>{{ name }}</h1>
-            <div class="socials">
-                {% for social in socials %}
-                <a href="{{ social.href }}" class="social" aria-label="{{ social.label }}"
-                    {% if social.icon != 'mail' %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                    {% include 'icons/' ~ social.icon ~ '.svg' %}
-                </a>
-                {% endfor %}
-            </div>
         </div>
 
         <div class="bio">
