@@ -37,9 +37,13 @@
                             {% include 'icons/' ~ l.icon ~ '.svg' %}
                         </a>
                         {% endfor %}
-                        {% if p.stat %}<span class="project-badge">{{ p.stat }}</span>{% endif %}
                     </div>
                 </div>
+                {% if p.stats %}
+                <div class="project-badges">
+                    {% for s in p.stats %}<span class="project-badge">{{ s }}</span>{% endfor %}
+                </div>
+                {% endif %}
                 <p class="project-desc">{{ p.description }}</p>
             </div>
             {% endfor %}

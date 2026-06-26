@@ -69,7 +69,7 @@ PROJECTS = [
     {
         "name": "vit",
         "image": "vit.jpeg",
-        "stat": "2m views",
+        "stats": ["⭐ 700+ stars"],
         "description": "git for video editing. 700+ stars and 2 million views.",
         "href": "https://vit-editor.vercel.app/",
         "links": [
@@ -81,7 +81,7 @@ PROJECTS = [
     {
         "name": "anterno",
         "image": "anternomain.png",
-        "stat": "won $30k",
+        "stats": ["won $30k"],
         "description": "cursor for intern onboarding. national finalist @ spark, backed by dmz ventures & rhf.",
         "href": "https://ingeniousplus.ca/spark-investments/",
         "links": [
@@ -92,7 +92,7 @@ PROJECTS = [
     {
         "name": "pindex",
         "image": "pindex.png",
-        "stat": "won nexhacks",
+        "stats": ["won nexhacks", "$5k"],
         "description": "agentic index funds that automatically diversify risk across related prediction markets.",
         "href": "https://pindex.tech",
         "links": [
@@ -103,7 +103,7 @@ PROJECTS = [
     {
         "name": "donair",
         "image": "donairshow.png",
-        "stat": "acquired",
+        "stats": ["acquired", "2x hackathon winner"],
         "description": "instant agentic crowdfunding. won twice @ conuhacks, acquired by talsom.",
         "href": "https://donair.tech",
         "links": [

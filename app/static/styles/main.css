@@ -404,6 +404,13 @@ a.work-card:hover {
     height: 14px;
 }
 
+.project-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+
 .project-badge {
     flex-shrink: 0;
     font-size: 0.7rem;
