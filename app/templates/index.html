@@ -61,7 +61,7 @@
         <h2 class="section-title">education:</h2>
         <div class="work-list">
             {% for edu in education %}
-            <div class="work-card work-card--static">
+            <a href="{{ edu.href }}" class="work-card" target="_blank" rel="noopener noreferrer">
                 <span class="work-logo">
                     <img src="{{ url_for('static', filename='img/' ~ edu.logo) }}" alt="{{ edu.school }}">
                 </span>
@@ -70,7 +70,7 @@
                     <span class="work-role">{{ edu.degree }}</span>
                 </span>
                 <span class="work-period">{{ edu.period }}</span>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </section>

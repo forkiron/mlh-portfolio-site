@@ -60,7 +60,13 @@ run_remote() {
 run_remote <<'REMOTE'
 set -e
 BR="$1"; RD="$2"; SESS="$3"; PORT="$4"
-RD="${RD/#\~/$HOME}"
+# Resolve RD to an absolute path on THIS (remote) machine.
+case "$RD" in
+  "~")    RD="$HOME" ;;
+  "~/"*)  RD="$HOME/${RD#~/}" ;;
+  /*)     : ;;
+  *)      RD="$HOME/$RD" ;;
+esac
 cd "$RD"
 echo "   - fetching origin"
 git fetch origin

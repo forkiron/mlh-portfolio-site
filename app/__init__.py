@@ -69,6 +69,7 @@ EDUCATION = [
         "degree": "bachelor of mathematics, computer science",
         "period": "2025 — present",
         "logo": "uwaterloo.webp",
+        "href": "https://uwaterloo.ca",
     },
 ]
 
