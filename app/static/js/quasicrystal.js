@@ -9,7 +9,7 @@
 
   const AMP = 10; // pattern amplitude (opacity slider scales the final alpha)
 
-  const baseFill = [200, 201, 209]; // soft grey, barely off the bg
+  const baseFill = [238, 238, 238]; // #eeeeee — barely-grey, near white
   const hoverFill = [226, 206, 174]; // soft warm — a nod to the amber accent
 
   // live-tunable params (driven by the control panel)
