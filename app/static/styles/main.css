@@ -251,6 +251,101 @@ a.work-card:hover {
     text-transform: lowercase;
 }
 
+/* --- projects --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px 20px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #e4e4e7;
+    margin-bottom: 12px;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.04);
+}
+
+.project-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.project-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    color: #1a1a1a;
+    text-transform: lowercase;
+    transition: opacity 0.2s ease;
+}
+
+.project-name:hover {
+    opacity: 0.65;
+}
+
+.project-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-link {
+    display: inline-flex;
+    color: var(--text-subtle);
+    transition: color 0.2s ease;
+}
+
+.project-link:hover {
+    color: var(--text-primary);
+}
+
+.project-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+.project-badge {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: #fdeccd;
+    color: #92560e;
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+.project-desc {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-subtle);
+    text-transform: lowercase;
+}
+
 /* --- travel map --- */
 #map {
     height: 320px;

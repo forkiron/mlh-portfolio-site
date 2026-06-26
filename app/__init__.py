@@ -63,6 +63,56 @@ WORK_EXPERIENCES = [
     },
 ]
 
+# Side projects — image, a short stat badge, blurb, and links. Pulled from
+# thomaslenh-v2 (one still image each, no hover-zoom).
+PROJECTS = [
+    {
+        "name": "vit",
+        "image": "vit.jpeg",
+        "stat": "2m views",
+        "description": "git for video editing. 700+ stars and 2 million views.",
+        "href": "https://vit-editor.vercel.app/",
+        "links": [
+            {"icon": "github", "href": "https://github.com/LucasHJin/vit"},
+            {"icon": "youtube", "href": "https://www.youtube.com/watch?v=phS28hhJSP8"},
+            {"icon": "external", "href": "https://vit-editor.vercel.app/"},
+        ],
+    },
+    {
+        "name": "anterno",
+        "image": "anternomain.png",
+        "stat": "won $30k",
+        "description": "cursor for intern onboarding. national finalist @ spark, backed by dmz ventures & rhf.",
+        "href": "https://ingeniousplus.ca/spark-investments/",
+        "links": [
+            {"icon": "newspaper", "href": "https://ingeniousplus.ca/spark-investments/"},
+            {"icon": "external", "href": "https://anterno.com"},
+        ],
+    },
+    {
+        "name": "pindex",
+        "image": "pindex.png",
+        "stat": "won nexhacks",
+        "description": "agentic index funds that automatically diversify risk across related prediction markets.",
+        "href": "https://pindex.tech",
+        "links": [
+            {"icon": "github", "href": "https://github.com/danielp1218/Pindex"},
+            {"icon": "external", "href": "https://pindex.tech"},
+        ],
+    },
+    {
+        "name": "donair",
+        "image": "donairshow.png",
+        "stat": "acquired",
+        "description": "instant agentic crowdfunding. won twice @ conuhacks, acquired by talsom.",
+        "href": "https://donair.tech",
+        "links": [
+            {"icon": "newspaper", "href": "https://www.talsom.com/insights/talsom-et-la-maison-du-pere-du-design-thinking-a-laction-contre-litinerance/"},
+            {"icon": "external", "href": "https://donair.tech"},
+        ],
+    },
+]
+
 EDUCATION = [
     {
         "school": "university of waterloo",
@@ -85,23 +135,16 @@ PLACES = [
 SKILLS = [
     {"group": "languages", "skills": ["python", "java", "c", "c++", "javascript", "typescript", "sql", "bash", "swift"]},
     {"group": "frameworks", "skills": ["react", "react native", "next.js", "express", "flask", "fastapi", "tailwind"]},
-    {"group": "infrastructure", "skills": ["docker", "kubernetes", "linux", "nginx", "ci/cd", "prometheus", "grafana"]},
+    {"group": "infrastructure", "skills": ["docker", "kubernetes", "linux", "ci/cd"]},
     {"group": "databases & data", "skills": ["postgresql", "mysql", "mongodb", "redis", "influxdb", "pandas", "opencv"]},
     {"group": "developer tools", "skills": ["git", "github actions", "gcp", "aws", "digitalocean", "supabase", "vercel", "figma"]},
 ]
 
 HOBBIES = [
     {
-        "section": "sports",
+        "section": "hackathons",
         "hobbies": [
-            {"name": "badminton", "description": "smashing birdies whenever i can.", "icon": "🏸"},
-            {"name": "basketball", "description": "pickup runs with friends.", "icon": "🏀"},
-        ],
-    },
-    {
-        "section": "tech",
-        "hobbies": [
-            {"name": "hackathons", "description": "building projects under pressure.", "image": "vit.jpeg"},
+            {"name": "", "description": "building projects under pressure — easily the most fun i have.", "image": "vit.jpeg"},
         ],
     },
 ]
@@ -142,6 +185,7 @@ def index():
         bio=BIO,
         skills=SKILLS,
         work_experiences=WORK_EXPERIENCES,
+        projects=PROJECTS,
         education=EDUCATION,
         places=PLACES,
     )

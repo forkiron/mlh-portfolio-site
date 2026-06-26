@@ -13,7 +13,7 @@
                 {% else %}
                 <div class="hobby-icon">{{ hobby.icon }}</div>
                 {% endif %}
-                <h3>{{ hobby.name }}</h3>
+                {% if hobby.name %}<h3>{{ hobby.name }}</h3>{% endif %}
                 <p>{{ hobby.description }}</p>
             </div>
             {% endfor %}
