@@ -140,15 +140,6 @@ SKILLS = [
     {"group": "developer tools", "skills": ["git", "github actions", "gcp", "aws", "digitalocean", "supabase", "vercel", "figma"]},
 ]
 
-HOBBIES = [
-    {
-        "section": "hackathons",
-        "hobbies": [
-            {"name": "", "description": "building projects under pressure — easily the most fun i have.", "image": "vit.jpeg"},
-        ],
-    },
-]
-
 # Week 1 recap — kept short and nonchalant, one line per thing.
 WEEK1 = {
     "intro": "orientation + first taste of linux and servers. super hands-on week.",
@@ -195,7 +186,6 @@ def hobbies():
     return render_template(
         "hobbies.html",
         title=f"hobbies · {NAME}",
-        hobbies=HOBBIES,
         projects=PROJECTS,
     )
 
