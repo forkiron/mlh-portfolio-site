@@ -185,7 +185,6 @@ def index():
         bio=BIO,
         skills=SKILLS,
         work_experiences=WORK_EXPERIENCES,
-        projects=PROJECTS,
         education=EDUCATION,
         places=PLACES,
     )
@@ -197,6 +196,7 @@ def hobbies():
         "hobbies.html",
         title=f"hobbies · {NAME}",
         hobbies=HOBBIES,
+        projects=PROJECTS,
     )
 
 
