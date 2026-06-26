@@ -49,7 +49,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 768px;
+    max-width: 36rem;
     margin: 0 auto;
     padding: 16px 24px;
 }
@@ -83,7 +83,7 @@ a {
 
 /* --- shared page width --- */
 .page {
-    max-width: 768px;
+    max-width: 36rem;
     margin: 0 auto;
     padding: 64px 24px 48px;
 }
@@ -129,7 +129,7 @@ a {
 }
 
 .bio {
-    max-width: 30rem;
+    max-width: 100%;
     color: var(--text-muted);
     font-size: 1.05rem;
 }
@@ -166,7 +166,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-width: 32rem;
+    max-width: 100%;
 }
 
 .work-card {
@@ -255,7 +255,7 @@ a.work-card:hover {
 #map {
     height: 320px;
     width: 100%;
-    max-width: 32rem;
+    max-width: 100%;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     margin-bottom: 14px;
@@ -269,7 +269,7 @@ a.work-card:hover {
     gap: 8px;
     padding: 0;
     margin: 0;
-    max-width: 32rem;
+    max-width: 100%;
 }
 
 .places li {
@@ -287,7 +287,7 @@ a.work-card:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
-    max-width: 32rem;
+    max-width: 100%;
 }
 
 .skill-group-title {
@@ -319,7 +319,7 @@ a.work-card:hover {
     list-style: none;
     padding: 0;
     margin: 16px 0 0;
-    max-width: 34rem;
+    max-width: 100%;
 }
 
 .learnings li {
@@ -333,7 +333,7 @@ a.work-card:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
-    max-width: 32rem;
+    max-width: 100%;
 }
 
 .hobby-card {
@@ -375,7 +375,7 @@ a.work-card:hover {
 
 /* --- footer socials --- */
 .site-footer {
-    max-width: 768px;
+    max-width: 36rem;
     margin: 0 auto;
     padding: 8px 24px 56px;
 }
