@@ -1,17 +1,27 @@
 #!/bin/bash
+# Redeploy the portfolio site on the VPS.
+# Flask runs as the systemd service `myportfolio` (see /etc/systemd/system/myportfolio.service),
+# so a redeploy is: sync the repo, install deps, restart the service.
 
 set -e
 
 cd /root/mlh-portfolio-site
 
 BRANCH=$(git branch --show-current)
-git pull origin "$BRANCH"
+git fetch origin
+git reset "origin/$BRANCH" --hard
 
 source python3-virtualenv/bin/activate
 pip install -r requirements.txt
 
-tmux kill-session -t portfolio 2>/dev/null || true
+systemctl daemon-reload
+systemctl restart myportfolio
 
-tmux new-session -d -s portfolio "bash -lc 'cd /root/mlh-portfolio-site && source python3-virtualenv/bin/activate && flask run --host=0.0.0.0'"
-
-echo "Website redeployed successfully."
+sleep 2
+if systemctl is-active --quiet myportfolio; then
+    echo "Website redeployed successfully."
+else
+    echo "Service failed to start:" >&2
+    journalctl -u myportfolio -n 20 --no-pager >&2
+    exit 1
+fi

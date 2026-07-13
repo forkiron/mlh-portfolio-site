@@ -2,7 +2,7 @@
 # Deploy this portfolio to the DigitalOcean VPS that serves the DuckDNS site.
 #
 # Flow: commit + push the CURRENT branch -> SSH into the VPS -> sync that branch
-# -> restart Flask inside a detached tmux session. Run from anywhere:
+# -> restart the myportfolio systemd service. Run from anywhere:
 #   scripts/deploy.sh ["optional commit message"]
 #
 # Config + secrets live in .deploy.env (gitignored). See scripts/deploy.example.env.
@@ -43,7 +43,7 @@ fi
 echo "==> Pushing to origin/$BRANCH"
 git push -u origin "$BRANCH"
 
-# 3) remote: sync the branch + restart Flask in tmux
+# 3) remote: sync the branch + restart the myportfolio service
 echo "==> Updating server + restarting Flask"
 SSH_OPTS=(-o StrictHostKeyChecking=accept-new -o ConnectTimeout=15)
 
@@ -76,15 +76,15 @@ git reset --hard "origin/$BR"
 source python3-virtualenv/bin/activate
 echo "   - installing requirements"
 pip install -q -r requirements.txt || true
-echo "   - restarting tmux session '$SESS'"
-tmux kill-session -t "$SESS" 2>/dev/null || true
-tmux new-session -d -s "$SESS" -c "$RD" \
-  "source python3-virtualenv/bin/activate && exec flask run --host=0.0.0.0 --port $PORT"
-sleep 1
-if tmux has-session -t "$SESS" 2>/dev/null; then
-  echo "   - flask is running in tmux '$SESS'"
+echo "   - restarting myportfolio service"
+systemctl daemon-reload
+systemctl restart myportfolio
+sleep 2
+if systemctl is-active --quiet myportfolio; then
+  echo "   - flask is running under systemd (myportfolio.service)"
 else
-  echo "   ! tmux session failed to start" >&2
+  echo "   ! myportfolio service failed to start" >&2
+  journalctl -u myportfolio -n 20 --no-pager >&2
   exit 1
 fi
 REMOTE

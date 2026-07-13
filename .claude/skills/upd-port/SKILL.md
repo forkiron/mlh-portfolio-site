@@ -1,6 +1,6 @@
 ---
 name: upd-port
-description: Deploy this MLH portfolio to the DigitalOcean VPS that serves the DuckDNS site. Commits + pushes the current branch, SSHes into the droplet, syncs the branch, and restarts Flask in tmux. Use when the user says "/upd-port", "update my portfolio", "deploy the site", "push to the vps/duckdns", or "redeploy". Scoped to the mlh-portfolio-site repo only.
+description: Deploy this MLH portfolio to the DigitalOcean VPS that serves the DuckDNS site. Commits + pushes the current branch, SSHes into the droplet, syncs the branch, and restarts the myportfolio systemd service. Use when the user says "/upd-port", "update my portfolio", "deploy the site", "push to the vps/duckdns", or "redeploy". Scoped to the mlh-portfolio-site repo only.
 ---
 
 # upd-port — deploy the portfolio to the VPS
@@ -12,7 +12,7 @@ One command to ship local changes to the live DuckDNS site. The heavy lifting is
 1. Commits any uncommitted changes on the **current branch**.
 2. Pushes that branch to `origin` (keeps `main` clean for friends to fork).
 3. SSHes into the VPS, `git reset --hard origin/<branch>`, reinstalls deps.
-4. Restarts Flask in a detached `tmux` session (`flask run --host=0.0.0.0`).
+4. Restarts Flask via `systemctl restart myportfolio` (systemd service, survives reboots).
 
 ## Config
 All settings live in `.deploy.env` at the repo root (gitignored — never committed,
