@@ -40,6 +40,7 @@ PAGES = [
     {"name": "home", "endpoint": "index"},
     {"name": "hobbies", "endpoint": "hobbies"},
     {"name": "week 1", "endpoint": "week1"},
+    {"name": "timeline", "endpoint": "timeline"},
 ]
 
 # Social links shown next to the hero heading.
@@ -227,6 +228,11 @@ def week1():
         title=f"week 1 · {NAME}",
         week1=WEEK1,
     )
+
+
+@app.route("/timeline")
+def timeline():
+    return render_template("timeline.html", title=f"timeline · {NAME}")
 
 
 @app.route("/api/timeline_post", methods=["POST"])

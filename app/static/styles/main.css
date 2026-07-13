@@ -562,6 +562,148 @@ a.work-card:hover {
     color: var(--text-subtle);
 }
 
+/* --- timeline --- */
+.timeline-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.timeline-form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.timeline-form-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+.timeline-form input,
+.timeline-form textarea {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    padding: 8px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    resize: vertical;
+}
+
+.timeline-form input::placeholder,
+.timeline-form textarea::placeholder {
+    color: var(--text-faint);
+    text-transform: lowercase;
+}
+
+.timeline-form input:focus,
+.timeline-form textarea:focus {
+    outline: none;
+    border-color: var(--text-faint);
+}
+
+.timeline-form-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.timeline-form button {
+    margin-left: auto;
+    background: #fdeccd;
+    color: #92560e;
+    border: 1px solid #f3d9a4;
+    border-radius: 0;
+    padding: 6px 18px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-transform: lowercase;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.timeline-form button:hover {
+    opacity: 0.75;
+}
+
+.timeline-form button:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.timeline-status {
+    font-size: 0.85rem;
+    color: var(--text-faint);
+    text-transform: lowercase;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.timeline-empty {
+    margin: 0;
+    color: var(--text-faint);
+    font-size: 0.95rem;
+}
+
+.timeline-post {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+}
+
+.timeline-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+    background: var(--tag-bg);
+}
+
+.timeline-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.timeline-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.timeline-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    text-transform: lowercase;
+    overflow-wrap: anywhere;
+}
+
+.timeline-date {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+}
+
+.timeline-content {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
 /* --- footer socials --- */
 .site-footer {
     max-width: 36rem;

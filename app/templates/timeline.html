@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page">
+    <section class="section">
+        <h2 class="section-title">timeline:</h2>
+        <p class="bio-lead">leave a post — it goes through the flask api into mysql.</p>
+
+        <form id="timeline-form" class="timeline-form">
+            <div class="timeline-form-row">
+                <input type="text" name="name" placeholder="name" required maxlength="255">
+                <input type="email" name="email" placeholder="email" required maxlength="255">
+            </div>
+            <textarea name="content" placeholder="what's on your mind?" rows="3" required></textarea>
+            <div class="timeline-form-foot">
+                <span id="timeline-status" class="timeline-status" role="status"></span>
+                <button type="submit">post</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">posts:</h2>
+        <div id="timeline-list" class="timeline-list"></div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/timeline.js') }}"></script>
+{% endblock %}
