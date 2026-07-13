@@ -18,6 +18,20 @@ mydb = MySQLDatabase(
 
 print(mydb)
 
+
+class TimelinePost(Model):
+    name = CharField()
+    email = CharField()
+    content = TextField()
+    created_at = DateTimeField(default=datetime.now)
+
+    class Meta:
+        database = mydb
+
+
+mydb.connect()
+mydb.create_tables([TimelinePost])
+
 # --- Site basics ---
 NAME = "thomas lenh"
 TAGLINE = "first year @ uwaterloo · into consumer tech"
