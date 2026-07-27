@@ -216,6 +216,10 @@ document.getElementById("timeline-form").addEventListener("submit", async (event
             method: "POST",
             body: new URLSearchParams(new FormData(form)),
         });
+        if (res.status === 429) {
+            status.textContent = "rate limit reached — only one post per minute. try again in a bit.";
+            return;
+        }
         if (!res.ok) throw new Error("POST failed: " + res.status);
         form.elements.content.value = "";
         status.textContent = "";
