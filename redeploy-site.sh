@@ -13,13 +13,15 @@ docker compose -f docker-compose.prod.yml down
 
 docker compose -f docker-compose.prod.yml up -d --build
 
-# Wait for Flask to come up (the mysql container needs a moment to initialize)
-for i in $(seq 1 30); do
-    if curl -sf http://localhost:5000/ >/dev/null; then
+# Wait for the site to come up through nginx (mysql init + first-run cert
+# issuance can take a couple of minutes; -k because the cert is for the
+# duckdns domain, not localhost)
+for i in $(seq 1 60); do
+    if curl -skf https://localhost/ >/dev/null; then
         echo "Website redeployed successfully."
         exit 0
     fi
-    sleep 2
+    sleep 5
 done
 
 echo "Site did not respond after redeploy:" >&2
