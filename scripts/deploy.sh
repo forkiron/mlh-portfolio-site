@@ -2,7 +2,7 @@
 # Deploy this portfolio to the DigitalOcean VPS that serves the DuckDNS site.
 #
 # Flow: commit + push the CURRENT branch -> SSH into the VPS -> sync that branch
-# -> restart the myportfolio systemd service. Run from anywhere:
+# -> rebuild + restart the site with Docker Compose. Run from anywhere:
 #   scripts/deploy.sh ["optional commit message"]
 #
 # Config + secrets live in .deploy.env (gitignored). See scripts/deploy.example.env.
@@ -43,8 +43,8 @@ fi
 echo "==> Pushing to origin/$BRANCH"
 git push -u origin "$BRANCH"
 
-# 3) remote: sync the branch + restart the myportfolio service
-echo "==> Updating server + restarting Flask"
+# 3) remote: sync the branch + rebuild/restart the containers
+echo "==> Updating server + restarting containers"
 SSH_OPTS=(-o StrictHostKeyChecking=accept-new -o ConnectTimeout=15)
 
 run_remote() {
@@ -73,20 +73,21 @@ git fetch origin
 git switch "$BR" 2>/dev/null || git switch -c "$BR" --track "origin/$BR"
 echo "   - hard-reset to origin/$BR"
 git reset --hard "origin/$BR"
-source python3-virtualenv/bin/activate
-echo "   - installing requirements"
-pip install -q -r requirements.txt || true
-echo "   - restarting myportfolio service"
-systemctl daemon-reload
-systemctl restart myportfolio
-sleep 2
-if systemctl is-active --quiet myportfolio; then
-  echo "   - flask is running under systemd (myportfolio.service)"
-else
-  echo "   ! myportfolio service failed to start" >&2
-  journalctl -u myportfolio -n 20 --no-pager >&2
-  exit 1
-fi
+echo "   - spinning containers down (avoids OOM while building)"
+docker compose -f docker-compose.prod.yml down
+echo "   - rebuilding + starting containers"
+docker compose -f docker-compose.prod.yml up -d --build
+echo "   - waiting for flask to respond"
+for i in $(seq 1 30); do
+  if curl -sf "http://localhost:$PORT/" >/dev/null; then
+    echo "   - site is up (docker compose, prod file)"
+    exit 0
+  fi
+  sleep 2
+done
+echo "   ! site did not respond after redeploy" >&2
+docker compose -f docker-compose.prod.yml logs --tail 30 >&2
+exit 1
 REMOTE
 
 echo ""

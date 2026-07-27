@@ -1,0 +1,10 @@
+.git
+.env
+.deploy.env
+python3-virtualenv
+venv/
+.venv
+__pycache__
+*.pyc
+.DS_Store
+.claude
