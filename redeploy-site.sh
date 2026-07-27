@@ -1,27 +1,27 @@
 #!/bin/bash
-# Redeploy the portfolio site on the VPS.
-# Flask runs as the systemd service `myportfolio` (see /etc/systemd/system/myportfolio.service),
-# so a redeploy is: sync the repo, install deps, restart the service.
+# Redeploy the portfolio site on the VPS with Docker Compose.
+# Flow: sync the repo from GitHub, spin containers down first (prevents
+# out-of-memory on the small droplet while building), then rebuild + start.
 
 set -e
 
 cd /root/mlh-portfolio-site
 
-BRANCH=$(git branch --show-current)
-git fetch origin
-git reset "origin/$BRANCH" --hard
+git fetch && git reset origin/main --hard
 
-source python3-virtualenv/bin/activate
-pip install -r requirements.txt
+docker compose -f docker-compose.prod.yml down
 
-systemctl daemon-reload
-systemctl restart myportfolio
+docker compose -f docker-compose.prod.yml up -d --build
 
-sleep 2
-if systemctl is-active --quiet myportfolio; then
-    echo "Website redeployed successfully."
-else
-    echo "Service failed to start:" >&2
-    journalctl -u myportfolio -n 20 --no-pager >&2
-    exit 1
-fi
+# Wait for Flask to come up (the mysql container needs a moment to initialize)
+for i in $(seq 1 30); do
+    if curl -sf http://localhost:5000/ >/dev/null; then
+        echo "Website redeployed successfully."
+        exit 0
+    fi
+    sleep 2
+done
+
+echo "Site did not respond after redeploy:" >&2
+docker compose -f docker-compose.prod.yml logs --tail 30 >&2
+exit 1
