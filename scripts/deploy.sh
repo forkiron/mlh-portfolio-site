@@ -77,13 +77,13 @@ echo "   - spinning containers down (avoids OOM while building)"
 docker compose -f docker-compose.prod.yml down
 echo "   - rebuilding + starting containers"
 docker compose -f docker-compose.prod.yml up -d --build
-echo "   - waiting for flask to respond"
-for i in $(seq 1 30); do
-  if curl -sf "http://localhost:$PORT/" >/dev/null; then
-    echo "   - site is up (docker compose, prod file)"
+echo "   - waiting for the site to respond through nginx"
+for i in $(seq 1 60); do
+  if curl -skf https://localhost/ >/dev/null; then
+    echo "   - site is up (docker compose, prod file, via nginx)"
     exit 0
   fi
-  sleep 2
+  sleep 5
 done
 echo "   ! site did not respond after redeploy" >&2
 docker compose -f docker-compose.prod.yml logs --tail 30 >&2

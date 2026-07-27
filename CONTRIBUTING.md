@@ -87,7 +87,7 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519   # cache the key passphrase once
    - pushes to `origin/<branch>`,
    - SSHes into the VPS, `git reset --hard origin/<branch>`, reinstalls deps,
    - restarts Flask in the `portfolio` `tmux` session.
-4. Live at **http://thomas-lenh-portfolio.duckdns.org:5000**
+4. Live at **https://thomas-lenh-portfolio.duckdns.org**
 
 ### Manual fallback (if the script is ever unavailable)
 ```bash
@@ -108,7 +108,7 @@ tmux new-session -d -s portfolio "cd ~/mlh-portfolio-site && source python3-virt
 
 ## DuckDNS
 
-- Domain: `thomas-lenh-portfolio.duckdns.org` → the droplet's (static) IP, port `5000`.
+- Domain: `thomas-lenh-portfolio.duckdns.org` → the droplet's (static) IP. nginx serves HTTPS on 443 and redirects HTTP.
 - The DigitalOcean IP is static, so no auto-updater is needed.
 - If it stops resolving (`SERVFAIL`/`NXDOMAIN`), go to [duckdns.org](https://www.duckdns.org),
   confirm the IP, click **update ip**, then flush your local DNS:
