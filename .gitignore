@@ -15,5 +15,6 @@ flask.sqlite
 scripts/
 curl-test.sh
 CONTRIBUTING.md
+.dockerignore
 
 .DS_Store
