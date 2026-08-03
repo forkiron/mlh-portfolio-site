@@ -1,13 +1,19 @@
+# python
 .venv
-__pycache__
-*.pyc
-.env
+venv/
 python3-virtualenv
-flask.sqlite
-.DS_Storevenv/
 __pycache__/
-.env
-.DS_Store
+*.pyc
+flask.sqlite
 
-# deploy secrets (host + password) — never commit, friends fork this repo
+# secrets — never commit, friends fork this repo
+.env
 .deploy.env
+
+# local tooling, kept on disk but out of the repo
+.claude/
+scripts/
+curl-test.sh
+CONTRIBUTING.md
+
+.DS_Store
