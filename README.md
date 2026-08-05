@@ -72,6 +72,23 @@ You'll now be able to access the website at `localhost:5000` or `127.0.0.1:5000`
 
 *Note: The portfolio site will only work on your local machine while you have it running inside of your terminal. We'll go through how to host it in the cloud in the next few weeks!* 
 
+## Tests
+
+Run the unit tests locally with the virtual environment created above:
+
+```bash
+TESTING=true ./run_test.sh
+```
+
+`TESTING=true` swaps the MySQL database for an in-memory SQLite one, so the tests never touch real data.
+
+## Continuous Integration
+
+Every push and pull request to `main` runs the test suite on GitHub Actions
+(`.github/workflows/test.yml`): it checks out the repo, sets up Python, builds the
+`python3-virtualenv` virtual environment, installs `requirements.txt`, and runs `./run_test.sh`
+with `TESTING=true`. A pull request can only be merged once that check is green.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
