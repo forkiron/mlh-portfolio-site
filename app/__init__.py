@@ -61,6 +61,7 @@ BIO = {
     "lines": [
         "i like consumer tech and building cool things!",
         "currently in the mlh production engineering fellowship.",
+        "this site deploys itself — push to main and it ships.",
     ],
 }
 
