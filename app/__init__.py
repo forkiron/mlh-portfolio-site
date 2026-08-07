@@ -59,7 +59,7 @@ SOCIALS = [
 BIO = {
     "lead": "first-year student based in waterloo.",
     "lines": [
-        "i like consumer tech and building cool things.",
+        "i like consumer tech and building cool things!",
         "currently in the mlh production engineering fellowship.",
     ],
 }
