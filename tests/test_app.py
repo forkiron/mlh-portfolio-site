@@ -55,7 +55,33 @@ class AppTestCase(unittest.TestCase):
         html = response.get_data(as_text=True)
         assert "<title>timeline · thomas lenh</title>" in html
 
-    def test_malformed_timeline_post(self): 
+    def test_health(self):
+        response = self.client.get("/health")
+        assert response.status_code == 200
+        assert response.is_json
+        json = response.get_json()
+
+        assert json["status"] == "ok"
+        # every container the site is made of is accounted for
+        assert set(json["checks"]) == {"app", "database", "proxy"}
+        assert json["checks"]["app"]["container"] == "myportfolio"
+        assert json["checks"]["proxy"]["container"] == "nginx"
+
+        # the database check does a real query, so it reports a row count
+        db = json["checks"]["database"]
+        assert db["ok"] is True
+        assert db["container"] == "mysql"
+        assert db["timeline_posts"] == 0
+        assert db["latency_ms"] >= 0
+
+        # the test client talks to flask directly, so nginx is not in the path
+        assert json["checks"]["proxy"]["ok"] is False
+
+        # ...and it is detected when the proxy header is present
+        response = self.client.get("/health", headers={"X-Forwarded-For": "203.0.113.7"})
+        assert response.get_json()["checks"]["proxy"]["ok"] is True
+
+    def test_malformed_timeline_post(self):
         #POST request missing name 
         response = self.client.post("/api/timeline_post", data={"email": "john@example.com", "content": "Hello world, I'm John!"})
         assert response.status_code == 400
