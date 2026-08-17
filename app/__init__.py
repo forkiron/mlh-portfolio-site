@@ -1,4 +1,5 @@
 import os
+import time
 from datetime import datetime
 
 from flask import Flask, render_template, request
@@ -239,6 +240,66 @@ def week1():
 @app.route("/timeline")
 def timeline():
     return render_template("timeline.html", title=f"timeline · {NAME}")
+
+
+@app.route("/health")
+def health():
+    """Report on every container the site is made of.
+
+    A load test against `/` only touches nginx and flask, so the mysql
+    container sits idle in Grafana. This route makes a real database round
+    trip, which puts all three containers in the request path.
+
+    Overall status follows the hard dependency (the database) only. The proxy
+    check is informational — it reports whether the request came through
+    nginx, which is false when flask is hit directly on port 5000.
+    """
+    checks = {}
+    healthy = True
+
+    # mysql container — a real query, not a ping, so the DB does actual work
+    started = time.perf_counter()
+    try:
+        if mydb.is_closed():
+            mydb.connect(reuse_if_open=True)
+        mydb.execute_sql("SELECT 1").fetchone()
+        checks["database"] = {
+            "ok": True,
+            "container": "mysql",
+            "timeline_posts": TimelinePost.select().count(),
+            "latency_ms": round((time.perf_counter() - started) * 1000, 2),
+        }
+    except Exception as exc:
+        healthy = False
+        checks["database"] = {
+            "ok": False,
+            "container": "mysql",
+            "error": f"{type(exc).__name__}: {exc}",
+            "latency_ms": round((time.perf_counter() - started) * 1000, 2),
+        }
+
+    # nginx container — it sets X-Forwarded-For, so its absence means the
+    # request reached flask without passing through the proxy
+    via_proxy = "X-Forwarded-For" in request.headers
+    checks["proxy"] = {
+        "ok": via_proxy,
+        "container": "nginx",
+        "detail": "request arrived through the reverse proxy" if via_proxy
+        else "no X-Forwarded-For header, so this request bypassed nginx",
+    }
+
+    # myportfolio container — reaching this line is the check
+    checks["app"] = {
+        "ok": True,
+        "container": "myportfolio",
+        "detail": "flask is serving requests",
+    }
+
+    return {
+        "status": "ok" if healthy else "degraded",
+        "checks": checks,
+        "checked_at": datetime.now().isoformat(timespec="seconds"),
+    }, (200 if healthy else 503)
 
 
 @app.route("/api/timeline_post", methods=["POST"])
